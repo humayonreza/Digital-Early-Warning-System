@@ -1,0 +1,62 @@
+<div class="col-sm-12 bgA" style="overflow: hidden">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="col-sm-12">
+        <app-navbar [NavId]="NavId"></app-navbar>
+      </div>
+      <div class="col-sm-12">
+        <div class="txt-header">Control Order</div>
+        <div class="row mt-0">
+          <div class="col-sm-12">
+            <table width="100%" class="tabCl-A">
+              <tr>
+                <th>Ser</th>
+                <th class="text-left pl-2">Unit</th>
+                <th>Control Order</th>
+                <th>Attacks</th>
+                <!-- <th></th> -->
+              </tr>
+              <tr
+                *ngFor="let data of arrConOrder"
+                [ngClass]="data.coId == 2 || data.coId == 3 ? 'clEn' : 'clReg'"
+              >
+                <td>{{ data.Ser }}</td>
+                <td class="text-left pl-2">{{ data.uName }}</td>
+
+                <td class="text-center pl-2">
+                  {{
+                    data.coId == 1
+                      ? "Guns Tight"
+                      : data.coId == 2
+                      ? "Guns Free"
+                      : data.coId == 3
+                      ? "Hold Fire"
+                      : data.coId == 4
+                      ? "Cancel Hold Fire"
+                      : "NA"
+                  }}
+                </td>
+                <!-- <td class="text-center">{{ data.totalAirStrikes }}</td> 
+                    (click)="openModal(data.uId, data.uName)"
+                
+                -->
+                <td>
+                  <button
+                    type="button"
+                    (click)="openModal(data.uId, data.uName)"
+                    class="btnCl-A"
+                  >
+                    {{ data.totalAirStrikes }}
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8" style="border-left: 5px solid #ccc">
+      <div class="row mymap" id="map"></div>
+    </div>
+  </div>
+</div>

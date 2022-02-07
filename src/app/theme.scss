@@ -1,139 +1,12 @@
 .full-width {
   width: 100%;
 }
-.padding-xs {
-  padding: 2px;
+.tabCl {
+  border: thin solid #eee;
+  border-radius: 10px;
 }
-.padding-sm {
-  padding: 2px 5px 2px 5px;
-}
-.padding-md {
-  padding: 4px 10px 4px 10px;
-}
-.padding-bg {
-  padding: 8px 10px 8px 10px;
-}
-.padding-lg {
-  padding: 15px;
-}
-.padding-xl {
-  padding: 20px;
-}
-
-.margin-xs {
-  margin: 2px;
-}
-.margin-sm {
-  margin: 2px 5px 2px 5px;
-}
-.margin-md {
-  margin: 4px 10px 4px 10px;
-}
-.margin-bg {
-  margin: 8px 10px 8px 10px;
-}
-.margin-lg {
-  margin: 15px;
-}
-.margin-xl {
-  margin: 20px;
-}
-.space-null {
-  padding: 0;
-  margin: 0;
-}
-.space-sm {
-  padding: 2px;
-  margin: 2px;
-}
-.space-bg {
-  padding: 5px;
-  margin: 5px;
-}
-.space-lg {
-  padding: 10px;
-  margin: 10px;
-}
-// ============ Text Align ========================
-.pull-center {
-  text-align: center;
-}
-.pull-left {
-  text-align: left;
-}
-.pull-right {
-  text-align: right;
-}
-// ============ Text Size/Color ========================
-.txt-xs {
-  font-size: 9px;
-}
-.txt-sm {
-  font-size: 12px;
-}
-.txt-md {
-  font-size: 15px;
-}
-.txt-bg {
-  font-size: 18px;
-}
-.txt-xl {
-  font-size: 25px;
-}
-.txt-bold {
-  font-weight: bold;
-}
-.txt-white {
-  color: #fff;
-}
-.txt-offwhite {
-  color: #888;
-}
-.txt-black {
-  color: #000;
-}
-.txt-blue {
-  color: blue;
-}
-.txt-brown {
-  color: brown;
-}
-
-.cursorP {
-  cursor: pointer;
-}
-// ================= Border ==========================
-.border-light {
-  border: thin solid #999;
-}
-// ====================== Background Color =============
-.bg-white1 {
-  background-color: #fff;
-}
-.bg-white2 {
-  background-color: #eee;
-}
-.bg-white3 {
-  background-color: #ddd;
-}
-.bg-white4 {
-  background-color: #cccc;
-}
-
-.bg-black1 {
-  background-color: #000;
-}
-.bg-black2 {
-  background-color: #111;
-}
-.bg-black3 {
-  background-color: #222;
-}
-.bg-black4 {
-  background-color: #333;
-}
-.bg-green {
-  background-color: rgb(85, 177, 85);
+.tabCl td {
+  padding: 3px;
 }
 // ================ Class Active / Inactive ============================
 .active {
@@ -145,13 +18,14 @@
 .nav-link {
   color: #999;
 }
+
 // =============== Customized DOM Element ==========
 ::ng-deep .mat-form-field {
   .mat-input-element {
-    color: slategray;
+    color: rgb(238, 242, 246);
   }
   .mat-form-field-label {
-    color: slategray;
+    color: rgb(228, 234, 240);
   }
   .mat-form-field-underline {
     background-color: slategray;
@@ -162,4 +36,346 @@
   .mat-form-field-required-marker {
     color: slategray;
   }
+}
+
+.frameA {
+  border: 2px solid #eee;
+  // box-shadow: 5px 0px 40px rgba(0, 0, 0, 0.2);
+}
+.frameB {
+  border-top: 8px solid #eee;
+  border-right: 8px solid #eee;
+  border-bottom: 8px solid #eee;
+}
+.frameC {
+  padding: 30px;
+  // border: 8px solid #eee;
+  // // background-color: #333;
+  // background-image: url("http://localhost:8080/backendDEWS/images/background/bgMap.png");
+  // height: auto;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+}
+agm-map {
+  height: 100vh;
+}
+
+.mat-radio-outer-circle {
+  border: thin solid rgb(6, 103, 248);
+  width: 18px;
+  height: 18px;
+}
+.mat-radio-outer-circle:hover {
+  border: thin solid rgb(252, 4, 4);
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.active {
+  color: brown;
+  font-weight: bold;
+}
+
+// ================font==================
+.txt-xs {
+  font-size: 10px;
+}
+.txt-sm {
+  font-size: 12px;
+}
+.txt-info {
+  font-size: 12px;
+  color: #999;
+  letter-spacing: normal;
+}
+// ============== btn ===================
+.btnCl-A {
+  background-color: #222;
+  height: 25px;
+  width: 55px;
+  border-radius: 5px;
+  border: thin solid #999;
+  font-size: 12px;
+  color: #ddd;
+}
+.btnCl-A:hover {
+  background-color: rgb(173, 11, 11);
+  font-weight: bold;
+  border-radius: 10px;
+  color: #fff;
+}
+//
+.btnCl-OP {
+  background-color: #222;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  border: thin solid #999;
+  font-size: 12px;
+  color: #ddd;
+}
+.btnCl-OP:hover {
+  background-color: rgb(173, 11, 11);
+  font-weight: bold;
+  border-radius: 10px;
+  color: #fff;
+}
+//
+.NotActive {
+  height: 40px;
+  width: 63px;
+  border-radius: 5px;
+  border: thin solid #999;
+  font-size: 13px;
+  font-weight: bold;
+}
+.Active {
+  height: 40px;
+  width: 63px;
+  border-radius: 5px;
+  border: thin solid #999;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #f00;
+  color: #fff;
+}
+.ActiveRed {
+  height: 40px;
+  width: 63px;
+  border-radius: 5px;
+  border: thin solid #999;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #f00;
+  color: #fff;
+}
+.ActiveBlue {
+  height: 40px;
+  width: 63px;
+  border-radius: 5px;
+  border: thin solid #999;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: rgb(69, 59, 182);
+  color: #fff;
+}
+.NotActive:hover {
+  background-color: #888;
+  color: #fff;
+}
+.btnCl-C {
+  margin-top: 10px;
+  width: 90px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: #ddd;
+  border: thin solid #eee;
+  color: #000;
+  font-weight: bold;
+}
+.btnCl-C:hover {
+  cursor: pointer;
+  background-color: rgb(245, 27, 27);
+  border: thin solid #eee;
+  color: #fff;
+}
+.btnSubmit {
+  background-color: rgb(66, 134, 244);
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  border: thin solid rgb(66, 134, 244);
+  font-size: 11px;
+  font-weight: bold;
+  color: #ddd;
+}
+.btnSubmit:hover {
+  background-color: #ddd;
+  height: 25px;
+  width: 25px;
+  border-radius: 25px;
+  font-size: 11px;
+  color: #222;
+}
+.outerBS {
+  padding: 4px;
+  height: 35px;
+  width: 35px;
+  border-radius: 35px;
+  border: thin solid #777;
+}
+.outerBS:hover {
+  border: thin solid rgb(66, 134, 244);
+}
+.btnZoom {
+  font-size: 35px;
+  color: #777;
+  width: 30px;
+  height: 40px;
+  border-radius: 5px;
+  padding: 0;
+  z-index: 9999;
+  position: relative;
+  top: 30;
+  left: 100;
+}
+
+.btnZoom:hover {
+  color: #999;
+  font-weight: bold;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar {
+  background: #999;
+  height: 1px;
+  color: #000;
+}
+
+.mat-tab-label {
+  color: #888;
+  font-size: 15px;
+  text-align: left;
+}
+.mat-tab-label:hover {
+  color: #999;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.tabCl-A,
+.tabCl-B,
+.info-div {
+  box-shadow: 5px 10px 30px #777;
+  border: 2px solid #cccc;
+  border-radius: 2px;
+}
+.tabCl-A td {
+  font-size: 14px;
+  border: thin solid #999;
+  color: #eee;
+  // padding: 1px 3px 1px 3px;
+  text-align: center;
+}
+
+.tabCl-A th {
+  font-size: 14px;
+  border: thin solid #999;
+  color: #eee;
+  text-align: center;
+  font-weight: normal;
+  background-color: #4e154e;
+  text-transform: uppercase;
+  padding: 1px 3px 1px 3px;
+}
+
+.tabCl-B td {
+  margin: 2px;
+  padding: 0px;
+  font-size: 11px;
+  border: thin solid #999;
+  color: rgb(66, 134, 244);
+  text-align: center;
+}
+
+.tabCl-B th {
+  font-size: 11px;
+  border: thin solid #999;
+  color: #eee;
+  background-color: #4e154e;
+  text-align: center;
+}
+.txt-xs {
+  font-size: 10px;
+}
+.mat-icon-B {
+  font-size: 27px;
+  color: #f00;
+}
+.mat-icon-B:hover {
+  font-size: 27px;
+  color: #ff0;
+}
+.txt-header {
+  color: #ccc;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: 0.5s;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.txt-header:hover {
+  color: #fff;
+  transition: 0.5s;
+}
+.mat-exp-panel-A {
+  background-color: #333;
+}
+.mat-exp-panel-B {
+  background-color: #444;
+}
+.title {
+  color: #eee;
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+.bgA {
+  background-color: #222;
+}
+.bgB {
+  background-image: url("http://localhost:8080/backendDEWS/images/background/bgMap.png");
+  height: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.txt-white {
+  color: #fff;
+}
+.map-container {
+  border-left: thin solid #444;
+}
+.img-cl-A {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgb(112, 35, 156);
+}
+.img-cl-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid rgb(112, 35, 156);
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+mat-icon:hover {
+  color: rgb(120, 161, 228);
+}
+
+#map {
+  height: 100vh;
+}
+.clEn {
+  background-color: rgb(146, 6, 6);
+}
+.clOwn {
+  background-color: rgb(32, 22, 238);
+}
+.clReg {
+  background-color: none;
+}
+
+.leaflet-container.crosshair-cursor-enabled {
+  cursor: crosshair;
 }

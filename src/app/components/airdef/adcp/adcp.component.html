@@ -1,0 +1,91 @@
+<div class="col-sm-12 bgA" style="overflow: hidden">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="col-sm-12">
+        <app-navbar [NavId]="NavId"></app-navbar>
+      </div>
+      <div class="col-sm-12 txt-header">Control Order</div>
+      <div class="col-sm-12">
+        <table width="100%" class="tabCl-A">
+          <tr>
+            <th>Readiness</th>
+            <th>Con Order</th>
+            <th>Man State</th>
+            <th>Time</th>
+          </tr>
+          <tr>
+            <td>{{ readiness }}</td>
+            <td>{{ gco }}</td>
+            <td>{{ manningState }}</td>
+            <td>{{ coTime }}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-12 mt-3">
+        <div class="txt-header">Flight Data</div>
+        <div class="row mt-0">
+          <div class="col-sm-12">
+            <table width="100%" class="tabCl-A">
+              <tr>
+                <th>Flight<br /><span class="txt-xs">(Id)</span></th>
+                <th>Dist<br /><span class="txt-xs">(KMs)</span></th>
+                <th>Brg<br /><span class="txt-xs">(Deg)</span></th>
+                <th>Spd<br /><span class="txt-xs">(Mach)</span></th>
+                <th>Ht<br /><span class="txt-xs">(M)</span></th>
+                <th>OP<br /><span class="txt-xs">(Wng)</span></th>
+                <th>
+                  <mat-icon
+                    style="font-size: 22px; cursor: pointer"
+                    (click)="mute_ttsSvc()"
+                    >{{ spkrIconHeader }}</mat-icon
+                  >
+                </th>
+              </tr>
+              <!-- [ngClass]="data.origin == 1 ? 'clOwn' : 'clEn'"  -->
+              <tr *ngFor="let data of flightData">
+                <td>
+                  {{ data.origin == 2 ? "H " + data.acId : "A " + data.acId }}
+                </td>
+                <td>
+                  {{ data.dist }}
+                </td>
+                <td>
+                  {{ data.brg }}
+                </td>
+                <td>
+                  {{ data.speed }}
+                </td>
+                <td>
+                  {{ data.height }}
+                </td>
+                <td>{{ data.op2warn }}</td>
+                <td>
+                  <mat-icon
+                    style="font-size: 20px; cursor: pointer"
+                    (click)="ttsSvc(data.acId)"
+                    >{{
+                      data.isSelected ? "volume_up" : "volume_off"
+                    }}</mat-icon
+                  >
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8" style="border-left: 5px solid #ccc">
+      <div class="row mymap" id="map">
+        <div class="col-sm-12 mt-2">
+          <mat-icon class="btnZoom mr-2" (click)="plotService.mapZoomCon(1)"
+            >add_circle_outline</mat-icon
+          >
+          <mat-icon class="btnZoom mr-2" (click)="plotService.mapZoomCon(-1)"
+            >remove_circle_outline</mat-icon
+          >
+          <mat-icon class="btnZoom" (click)="openModal()">schedule</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

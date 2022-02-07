@@ -1,0 +1,30 @@
+.lblCl {
+  background-color: black;
+}
+.leaflet-container.crosshair-cursor-enabled {
+  cursor: crosshair;
+}
+.leaflet-popup-tip-container {
+  display: none;
+  background: transparent;
+}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+  position: absolute;
+  pointer-events: none;
+  border: 0px solid transparent;
+  background: transparent;
+  content: "";
+}
+b {
+  color: brown;
+}
+.inputCl {
+  font-size: 15px;
+  height: 40px;
+  width: 95px;
+  padding: 0;
+  border: thin solid #999;
+}

@@ -1,0 +1,61 @@
+<div class="pull-center">
+  <table class="tabCl-A" width="100%">
+    <thead>
+      <tr>
+        <th class="baseTab">Msn | Tgt</th>
+        <th class="baseTab">Start</th>
+        <th class="baseTab">End</th>
+        <th class="baseTab">Hide</th>
+        <th class="baseTab">Show</th>
+        <th class="baseTab">Del</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of attkList">
+        <!-- <td>{{ data.BaseId }}</td> 
+        launchAttk(data.attkId)-->
+        <td class="txt-xs">{{ data.TgtName }}</td>
+        <td class="pt-1">
+          <mat-radio-button
+            color="accent"
+            value="wolf1"
+            name="{{ 'wolf' + data.Ser }}"
+            (click)="launchAttk(data.attkId, data.BaseId)"
+          ></mat-radio-button>
+        </td>
+        <td class="pt-1">
+          <mat-radio-button
+            color="accent"
+            value="wolf1"
+            name="{{ 'wolf' + data.Ser }}"
+            (click)="stopTimer()"
+          ></mat-radio-button>
+        </td>
+        <td class="pt-1">
+          <mat-radio-button
+            value="2"
+            name="{{ 'sh' + data.BaseId + data.Ser }}"
+            (click)="isVisibleAircraft(0)"
+          ></mat-radio-button>
+        </td>
+        <td class="pt-1">
+          <mat-radio-button
+            value="3"
+            name="{{ 'sh' + data.BaseId + data.Ser }}"
+            (click)="isVisibleAircraft(1)"
+          ></mat-radio-button>
+        </td>
+        <td class="pt-1" valign="top">
+          <mat-icon
+            class="mat-icon-B"
+            type="button"
+            name="remove"
+            title="{{ data.BaseId }}"
+            (click)="remove(data.attkId, data.BaseId)"
+            >delete_outline</mat-icon
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

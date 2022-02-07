@@ -1,0 +1,28 @@
+<!-- <p>{{ txt }}</p>
+<p>{{ humidity }}</p>
+<p>{{ wind_degree }}</p>
+<p><img src="{{ iconStr }}" alt="" height="60" width="80" /></p> -->
+<div class="col-sm-12">
+  <div class="row">
+    <table width="100%" class="tabCl-A">
+      <tr>
+        <th>
+          <img src="{{ srcIcon }}" alt="" height="60" width="80" />
+        </th>
+        <th>Temp<br /><span class="txt10">(C)</span></th>
+        <th>Wind Dir<br /><span class="txt10">(Deg)</span></th>
+        <th>Wind Spd<br /><span class="txt10">(Kph)</span></th>
+        <th>Hum<br /><span class="txt10">(%)</span></th>
+        <th>Vis<br /><span class="txt10">(KM)</span></th>
+      </tr>
+      <tr>
+        <td>{{ txtWeather }}</td>
+        <td>{{ temp_c }}</td>
+        <td>{{ wind_degree }}</td>
+        <td>{{ wind_kph }}</td>
+        <td>{{ humidity }}</td>
+        <td>{{ vis_km }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

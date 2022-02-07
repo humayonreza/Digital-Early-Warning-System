@@ -1,0 +1,103 @@
+<div class="row">
+  <div
+    class="col-4 mx-auto mt-5"
+    style="border: thin solid #ddd; padding: 30px; border-radius: 5%"
+  >
+    <div class="col-12 text-center">
+      <mat-icon style="font-size: 40px; color: blue">lock</mat-icon>
+    </div>
+    <div
+      class="col-12 txt-header text-center"
+      style="font-size: 20px; color: blue"
+    >
+      SECURE LOGIN
+    </div>
+    <form #m="ngForm" autocomplete="off" (ngSubmit)="login(m.value)">
+      <div class="col-12 mt-3">
+        <div class="input-group input-group-sm">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <mat-icon style="font-size: 25px; color: blue"
+                >supervisor_account</mat-icon
+              >
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control input-sm"
+            id="UserId"
+            name="UserId"
+            [(ngModel)]="UserId"
+            placeholder="User Id"
+          />
+        </div>
+      </div>
+      <div class="col-12 mt-1">
+        <div class="input-group input-group-sm">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <mat-icon style="font-size: 25px; color: blue">vpn_key</mat-icon>
+            </span>
+          </div>
+          <input
+            type="text"
+            class="form-control input-sm"
+            id="Password"
+            name="Password"
+            [(ngModel)]="Password"
+            placeholder="Password"
+          />
+        </div>
+      </div>
+      <div class="col-12 text-center mt-2">
+        <button class="btn btn-md btn-block btn-primary" type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- <div
+  class="d-flex justify-content-center bgA"
+  style="height: 100vh; padding-top: 50px"
+>
+  <form #m="ngForm" autocomplete="off" (ngSubmit)="login(m.value)">
+    <div class="row">
+      <div
+        class="col-sm-12 txt-header"
+        style="font-size: 30px; border-bottom: thin solid #555; padding: 20px"
+      >
+        <div class="row">Secure Login</div>
+      </div>
+      <div class="col-sm-12">
+        <div class="row form-group text-left p-1">
+          <label for="UserName" class="m-1 txt-header">USER ID</label>
+          <input
+            type="text"
+            class="form-control input-sm"
+            id="UserId"
+            name="UserId"
+            [(ngModel)]="UserId"
+          />
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="row form-group text-left p-1">
+          <label for="UserName" class="m-1 txt-header">PASSWORD</label>
+          <input
+            type="text"
+            class="form-control input-sm"
+            id="Password"
+            name="Password"
+            [(ngModel)]="Password"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+        <button class="btn btn-md btn-success" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div> -->

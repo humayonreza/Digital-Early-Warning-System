@@ -1,0 +1,243 @@
+<div class="col-sm-12 bgA" style="overflow-x: hidden">
+  <div class="row">
+    <div class="col-sm-4 frameA">
+      <div class="col-sm-12">
+        <app-navbar [NavId]="NavId"></app-navbar>
+      </div>
+      <div class="row">
+        <mat-vertical-stepper
+          [linear]="isLinear"
+          #stepper
+          style="background: transparent"
+        >
+          <mat-step [completed]="false">
+            <ng-template matStepLabel
+              ><label class="txt-header mt-2"
+                >Deploy Air Base</label
+              ></ng-template
+            >
+            <div class="col-sm-12">
+              <div class="row">
+                <form
+                  #d="ngForm"
+                  (ngSubmit)="deplAirBase(d.value)"
+                  autocomplete="off"
+                >
+                  <div class="row">
+                    <div class="col-md-6 txt-white">
+                      <table width="100%">
+                        <tr>
+                          <td style="padding-top: 20px">
+                            <mat-radio-button
+                              value="optSelect"
+                              name="optSelect"
+                              (click)="getBaseList(2)"
+                              >WL Base</mat-radio-button
+                            >
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="col-md-6 txt-white">
+                      <table width="100%">
+                        <tr>
+                          <td style="padding-top: 20px">
+                            <mat-radio-button
+                              value="optSelect"
+                              name="optSelect"
+                              (click)="getBaseList(3)"
+                              >DL Base</mat-radio-button
+                            >
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <table width="100%">
+                        <tr>
+                          <td>
+                            <mat-form-field style="width: 90%">
+                              <mat-label>Select Airbase</mat-label>
+                              <mat-select [(ngModel)]="baseId" name="baseId">
+                                <mat-option
+                                  *ngFor="let list of baseList"
+                                  [value]="list.elementId"
+                                >
+                                  {{ list.elementName }}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field style="width: 90%">
+                              <input
+                                matInput
+                                placeholder="Ex Name"
+                                id="exName"
+                                [(ngModel)]="exName"
+                                name="exName"
+                              />
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <mat-form-field style="width: 90%; color: #ddd">
+                              <input
+                                matInput
+                                placeholder="Lattitude"
+                                id="baseLat"
+                                [(ngModel)]="baseLat"
+                                name="baseLat"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field style="width: 90%; color: #ddd">
+                              <input
+                                matInput
+                                placeholder="Longitude"
+                                id="baseLng"
+                                [(ngModel)]="baseLng"
+                                name="baseLng"
+                              />
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="txt-white">
+                    <table width="100%">
+                      <tr>
+                        <td class="text-left">
+                          <div class="outerBS text-center">
+                            <button type="submit" class="btnSubmit">S</button>
+                          </div>
+                          <div class="txt-sm">Submit</div>
+                        </td>
+                        <td class="txt-sm text-center">{{ backend_resp }}</td>
+                        <td class="text-left">
+                          <div class="outerBS text-center">
+                            <button type="button" class="btnSubmit">R</button>
+                          </div>
+                          <div class="txt-sm">Reset</div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </mat-step>
+          <mat-step [completed]="false">
+            <ng-template matStepLabel
+              ><label class="txt-header mt-2"
+                >Air Base Details</label
+              ></ng-template
+            >
+            <div>ABCD</div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+    </div>
+    <div class="col-sm-8 frameB">
+      <agm-map
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="zoom"
+        [styles]="mapMode"
+        (mapClick)="getLocation($event)"
+      >
+        <agm-circle
+          [latitude]="lat"
+          [longitude]="lng"
+          [circleDraggable]="false"
+          [editable]="false"
+          [fillOpacity]="0"
+          [radius]="900000"
+          [strokeOpacity]="0.1"
+          [strokeWeight]="2"
+          [strokeColor]="'#fff'"
+          [clickable]="true"
+          (circleClick)="getLocation($event)"
+        >
+        </agm-circle>
+        <!-- <agm-circle
+          *ngFor="let layout of arrElementData"
+          [latitude]="layout.lat"
+          [longitude]="layout.lng"
+          [circleDraggable]="false"
+          [editable]="false"
+          [fillColor]="
+            layout.origin == 1 ? 'blue' : layout.origin == 2 ? '#f00' : '#ff0'
+          "
+          [fillOpacity]="layout.origin == 1 ? 0.3 : 0.2"
+          [radius]="layout.rad"
+          [strokeOpacity]="layout.origin == 1 ? 0.8 : 0.8"
+          [strokeWeight]="layout.origin == 1 ? 0.7 : 0.7"
+          [strokeColor]="
+            layout.origin == 1 ? '#777' : layout.origin == 2 ? '#777' : '#777'
+          "
+          [clickable]="true"
+        >
+        </agm-circle>
+        <agm-marker
+          *ngFor="let data of arrElementLabel"
+          [latitude]="data.lat"
+          [longitude]="data.lng"
+          [visible]="true"
+          [label]="
+            $any({
+              color: '#666',
+              fontSize: '8px',
+              text: data.elementName
+            })
+          "
+          [iconUrl]="
+            $any({
+              scale: 0,
+              fillColor: '#FF6347',
+              labelOrigin: { x: 60, y: -70 },
+              path: 'M0 0 L0 0 L0 0 Z'
+            })
+          "
+        ></agm-marker> -->
+        <!--   -->
+        <agm-circle
+          *ngFor="let data of arrElementData"
+          [latitude]="data.lat"
+          [longitude]="data.lng"
+          [circleDraggable]="false"
+          [editable]="false"
+          [fillColor]="
+            data.origin == 1 ? 'blue' : data.origin == 2 ? '#f00' : '#ff0'
+          "
+          [radius]="data.radius"
+          [clickable]="true"
+          [strokeOpacity]="0.3"
+          [strokeWeight]="1"
+          [strokeColor]="data.radius == 2000 ? '#fff' : '#0c6'"
+        >
+        </agm-circle>
+        <agm-marker
+          *ngFor="let data of arrLabel"
+          [latitude]="data.latLabel"
+          [longitude]="data.lng"
+          [label]="{
+            color: '#999',
+            fontFamily: 'arial',
+            fontSize: '9px',
+            fontWeight: 'lighter',
+            text: data.elementName
+          }"
+          [iconUrl]="'/'"
+        >
+        </agm-marker>
+      </agm-map>
+    </div>
+  </div>
+</div>

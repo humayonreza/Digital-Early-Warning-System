@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-sm">
+  <span class="navbar-brand">
+    <div class="text-center">
+      <img src="{{ logo }}" alt="" class="img-cl-logo mr-3" />
+      <div class="txt-xs" style="text-transform: uppercase; color: coral">
+        {{ NavId }} &nbsp;|&nbsp; <a href="/">logout</a>
+      </div>
+    </div>
+  </span>
+  <div
+    class="collapse navbar-collapse justify-content-end"
+    id="collapsibleNavbar"
+  >
+    <ul class="navbar-nav">
+      <li class="nav-item ml-2" *ngFor="let data of arrNavLink">
+        <div class="text-center">
+          <a
+            mat-mini-fab
+            color="primary"
+            style="font-size: 20px"
+            routerLink="{{ data.Path }}"
+          >
+            <mat-icon style="font-size: 20px">{{ data.RIcon }}</mat-icon>
+          </a>
+          <div class="txt-xs" style="color: coral">
+            {{ data.RName }}
+          </div>
+        </div>
+      </li>
+      <li class="nav-item ml-2" *ngIf="isReset">
+        <div class="text-center">
+          <a
+            mat-mini-fab
+            color="primary"
+            style="font-size: 20px"
+            (click)="resetFlightData()"
+          >
+            <mat-icon style="font-size: 20px">restore</mat-icon>
+          </a>
+          <div class="txt-xs txt-white">RESET</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

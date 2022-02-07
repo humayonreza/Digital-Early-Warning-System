@@ -1,0 +1,166 @@
+<div class="col-sm-12 bgB" style="overflow: hidden">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="col-sm-12">
+        <app-navbar [NavId]="NavId"></app-navbar>
+      </div>
+      <div class="col-sm-12">
+        <div class="txt-header" style="color: #333">Profile Data</div>
+        <div class="row mt-0">
+          <div class="col-sm-12">
+            <table width="100%" class="tabCl-A">
+              <tr>
+                <th>Flight<br /><span class="txt10">(Id)</span></th>
+                <th>Brg<br /><span class="txt10">(Deg)</span></th>
+                <th>Dist<br /><span class="txt10">(KMs)</span></th>
+                <th>Spd<br /><span class="txt10">(Mach)</span></th>
+                <th>Ht<br /><span class="txt10">(M)</span></th>
+                <th>Action</th>
+              </tr>
+              <tr
+                *ngFor="let data of arrProfiles"
+                [ngClass]="data.origin == 1 ? 'clOwn' : 'clEn'"
+              >
+                <td>
+                  {{ data.origin == 2 ? "H " + data.acId : "A " + data.acId }}
+                </td>
+                <td>
+                  {{ data.brg }}
+                </td>
+                <td>
+                  {{ data.dist }}
+                </td>
+                <td>
+                  {{ data.speed }}
+                </td>
+                <td>
+                  {{ data.height }}
+                </td>
+                <td>
+                  <table width="100%">
+                    <tr>
+                      <td style="border: none; width: 50%">
+                        <mat-radio-button
+                          class="mt-1 ml-1"
+                          [color]="color"
+                          value="data.Ser"
+                          [checked]="data.isSelected"
+                          name="isSelectedBtn"
+                          (click)="update_flight_data(data)"
+                        ></mat-radio-button>
+                      </td>
+                      <td style="border: none; width: 50%">
+                        <mat-icon
+                          (click)="remove_flight_data(data.acId, data.senderId)"
+                          style="font-size: 25px; color: #f00"
+                          >restore_from_trash</mat-icon
+                        >
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="col-sm-12 txt-header mt-3">
+        <mat-tab-group>
+          <mat-tab label="CREATE PROFILE">
+            <!--  -->
+            <div class="row">
+              <form
+                #b="ngForm"
+                (ngSubmit)="create_prolile()"
+                autocomplete="off"
+              >
+                <div class="col-sm-12 text-center">
+                  <table class="tabCl-A">
+                    <tr>
+                      <th>ENEMY</th>
+                      <th>OWN</th>
+                      <th>Mixed</th>
+                      <th>Speed</th>
+                      <th>Height</th>
+                    </tr>
+                    <tr>
+                      <td
+                        *ngFor="let data of arrProfileType"
+                        style="width: 50%"
+                      >
+                        <button
+                          type="button"
+                          [ngClass]="data.cl == 0 ? 'NotActive' : 'Active'"
+                          (click)="set_profile_type(data.OptVal)"
+                        >
+                          {{ data.Txt }}
+                        </button>
+                      </td>
+                      <td style="width: 25%">
+                        <select
+                          class="form-control inputCl"
+                          [(ngModel)]="Speed"
+                          name="Speed"
+                          (ngModelChange)="set_profile_speed($event)"
+                        >
+                          <option
+                            *ngFor="let data of arrSpeed"
+                            [ngValue]="data.OptVal"
+                          >
+                            {{ data.Txt }}
+                          </option>
+                        </select>
+                      </td>
+                      <td style="width: 25%">
+                        <select
+                          class="form-control inputCl"
+                          [(ngModel)]="Height"
+                          name="Height"
+                          (ngModelChange)="set_profile_height($event)"
+                        >
+                          <option
+                            *ngFor="let data of arrHeight"
+                            [ngValue]="data.OptVal"
+                          >
+                            {{ data.Txt }}
+                          </option>
+                        </select>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-sm-12 mt-0 txt-sm m-0">
+                  <button type="submit" class="btnCl-C mr-1">Create</button>
+                  <button type="button" class="btnCl-C">Reset</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-sm-12 mt-1 m-0">
+              <div class="row txt-sm">
+                Select Type of Profile by Pressing either
+                <b>HOSTILE(H)</b>&nbsp;or &nbsp;<b>ALLIED(A)</b>&nbsp; or &nbsp;
+                <b>MIXED(M)</b> and simply click on the Map within the Radar
+                Scope on right of screen
+              </div>
+            </div>
+            <!--  -->
+          </mat-tab>
+          <mat-tab label="WEATHER INFO">
+            <!--  -->
+            <div class="col-sm-12">
+              <div class="row">
+                <app-weather [CenKPI]="CenKPI"></app-weather>
+              </div>
+            </div>
+            <!--  -->
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+    <div class="col-sm-8" style="border-left: 5px solid #ccc">
+      <div class="row mymap" id="map"></div>
+    </div>
+  </div>
+</div>

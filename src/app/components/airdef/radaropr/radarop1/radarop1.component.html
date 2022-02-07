@@ -1,0 +1,16 @@
+<div class="col-sm-12 bgA" style="overflow-x: hidden">
+  <div class="row">
+    <div class="col-sm-4 frameA">
+      <div class="col-sm-12"></div>
+    </div>
+    <div class="col-sm-8 frameB">
+      <agm-map
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="zoom"
+        (mapReady)="onMapReady($event)"
+      >
+      </agm-map>
+    </div>
+  </div>
+</div>

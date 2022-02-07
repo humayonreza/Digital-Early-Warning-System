@@ -1,0 +1,96 @@
+<div
+  class="col-sm-12 mt-2 text-center txt-header"
+  style="font-size: 20px; z-index: 9999"
+>
+  Air Attack Summary&nbsp;({{ param2 }})
+</div>
+<div class="col-sm-12 mt-2">
+  <div class="row" *ngIf="viewId == 1">
+    <div class="col-sm-12" *ngIf="isMainAttkList">
+      <table width="100%" class="tabCl-A">
+        <tr>
+          <!-- <th>Unit</th> -->
+          <th>Date</th>
+          <th>Attacks</th>
+          <th>View</th>
+        </tr>
+
+        <tr *ngFor="let data of arrAirAttkGpbyDay">
+          <!-- <td>
+            {{ data.ElementName }}
+          </td> -->
+          <td>
+            {{ data.dateCO }}
+          </td>
+          <td>
+            {{ data.No }}
+          </td>
+          <td>
+            <mat-icon (click)="get_attk_list_by_given_date(data.dateCO)"
+              >fast_forward</mat-icon
+            >
+          </td>
+        </tr>
+      </table>
+      <p class="mt-2">
+        <button
+          style="border: thin solid #ccc"
+          mat-button
+          [mat-dialog-close]="returnStr"
+          cdkFocusInitial
+        >
+          Close
+        </button>
+      </p>
+    </div>
+    <div class="col-sm-12" *ngIf="!isMainAttkList">
+      <div class="row">
+        <div class="col-sm-12">
+          <table width="100%" class="tabCl-A">
+            <tr>
+              <th>Unit ID</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Plot</th>
+            </tr>
+            <tr *ngFor="let data of arrAttkListBydate">
+              <td>
+                {{ data.elementId }}
+              </td>
+              <td>
+                {{ data.dateCO }}
+              </td>
+              <td>
+                {{ data.timeCO }}
+              </td>
+              <td>
+                <mat-icon (click)="sendConOrderSer2Plot(data.Ser)"
+                  >fast_forward</mat-icon
+                >
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-12">
+          <div class="mt-2">
+            <button
+              style="border: thin solid #ccc; margin-right: 5px"
+              (click)="return_attk_list_gp_by_day()"
+              mat-button
+            >
+              Return
+            </button>
+            <button
+              style="border: thin solid #ccc"
+              mat-button
+              [mat-dialog-close]="returnStr"
+              cdkFocusInitial
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

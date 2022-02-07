@@ -1,0 +1,294 @@
+<div class="col-sm-12 bgA" style="overflow: hidden">
+  <div class="row">
+    <div class="col-sm-4 frameA">
+      <div class="col-sm-12">
+        <app-navbar [NavId]="NavId"></app-navbar>
+      </div>
+      <div class="col-sm-12">
+        <mat-vertical-stepper
+          [linear]="isLinear"
+          #stepper
+          style="background: transparent; color: #ddd"
+        >
+          <mat-step [completed]="false">
+            <ng-template matStepLabel
+              ><label class="txt-title">Deploy Unit</label></ng-template
+            >
+            <div style="margin-top: -20px">
+              <form
+                #d="ngForm"
+                (ngSubmit)="submitDeploymentData(d.value)"
+                autocomplete="off"
+              >
+                <div class="row">
+                  <div class="col-md-12">
+                    <table width="100%">
+                      <tr>
+                        <td class="" style="padding-top: 20px">
+                          <mat-radio-button
+                            value="optSelect"
+                            name="optSelect"
+                            (click)="deplType(1)"
+                            >Start Unit Deployment</mat-radio-button
+                          >
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <!-- <div class="row"> -->
+                <div class="col-sm-12">
+                  <div class="row">
+                    <mat-form-field style="width: 100%">
+                      <input
+                        matInput
+                        placeholder="Ex Name"
+                        id="exName"
+                        [(ngModel)]="exName"
+                        name="exName"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <!-- </div> -->
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table width="100%">
+                      <tr>
+                        <td>
+                          <mat-form-field style="width: 70%">
+                            <input
+                              matInput
+                              placeholder="Lattitude"
+                              id="uLat"
+                              [(ngModel)]="plotService.uLat"
+                              name="uLat"
+                            />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field style="width: 70%">
+                            <input
+                              matInput
+                              placeholder="Longitude"
+                              id="uLng"
+                              [(ngModel)]="plotService.uLng"
+                              name="uLng"
+                            />
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <table width="100%">
+                    <tr>
+                      <td class="text-center">
+                        <div class="outerBS">
+                          <button type="submit" class="btnSubmit">S</button>
+                        </div>
+                        <div class="text-left txt-sm">Submit</div>
+                      </td>
+                      <td class="text-center txt-white txt-sm">
+                        {{ backendResp_unitDepl }}
+                      </td>
+                      <td class="text-center">
+                        <div class="outerBS">
+                          <button type="button" class="btnSubmit">R</button>
+                        </div>
+                        <div class="text-left txt-sm">Reset</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </mat-step>
+          <mat-step [completed]="false">
+            <ng-template matStepLabel
+              ><label class="txt-title"
+                >Command Status for Subunit</label
+              ></ng-template
+            >
+            <div class="text-center">
+              <form
+                #c="ngForm"
+                (ngSubmit)="submitComdStatus()"
+                autocomplete="off"
+              >
+                <div>
+                  <table width="100%" class="tabCl-A">
+                    <tr style="font-weight: bold">
+                      <td>Subunt</td>
+                      <td>Integral</td>
+                      <td>Independent</td>
+                    </tr>
+                    <tr *ngFor="let data of arrCS">
+                      <td>{{ data.subunitName }}</td>
+                      <td>
+                        <mat-radio-button
+                          value="1"
+                          name="{{ data.ser }}"
+                          (click)="setSubunitCommandStatus(data.indepStateId)"
+                        ></mat-radio-button>
+                      </td>
+                      <td>
+                        <mat-radio-button
+                          value="1"
+                          name="{{ data.ser }}"
+                          (click)="
+                            setSubunitCommandStatus(data.integralStateId)
+                          "
+                        ></mat-radio-button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div style="margin-top: 10px">
+                  <table width="100%">
+                    <tr>
+                      <td class="text-left">
+                        <div class="outerBS text-center">
+                          <button type="submit" class="btnSubmit">S</button>
+                        </div>
+                        <div class="txt-sm">Submit</div>
+                      </td>
+                      <td class="txt-sm text-center">
+                        {{ backendResp_cmdstatus }}
+                      </td>
+                      <td class="text-left">
+                        <div class="outerBS text-center">
+                          <button type="button" class="btnSubmit">R</button>
+                        </div>
+                        <div class="txt-sm">Reset</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </mat-step>
+          <!-- OP Deploy -->
+          <mat-step [completed]="false">
+            <ng-template matStepLabel
+              ><label class="txt-title mt-2">Deploy OP</label></ng-template
+            >
+            <div class="col-sm-12">
+              <div class="row">
+                <form
+                  #o="ngForm"
+                  (ngSubmit)="submitOPDeploymentData(o.value)"
+                  autocomplete="off"
+                >
+                  <div class="col-sm-offset-1 col-sm-10">
+                    <div class="row">
+                      <button
+                        type="button"
+                        mat-mini-fab
+                        *ngFor="let data of secArr"
+                        [color]="data.cl == 0 ? 'accent' : 'primary'"
+                        [value]="data.value"
+                        (click)="set_op_msl_elm(data.value)"
+                      >
+                        {{ data.viewValue }}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-sm-12" *ngIf="deplOpt == 2">
+                    <div class="row mt-2">Set Lat/Lng of Op from Map.</div>
+                    <div class="row">
+                      <table>
+                        <tr>
+                          <td>
+                            <mat-form-field style="width: 70%">
+                              <input
+                                matInput
+                                placeholder="Lattitude"
+                                id="opLat"
+                                [(ngModel)]="plotService.opLat"
+                                name="opLat"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field style="width: 70%">
+                              <input
+                                matInput
+                                placeholder="Longitude"
+                                id="opLng"
+                                [(ngModel)]="plotService.opLng"
+                                name="opLng"
+                              />
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <mat-form-field style="width: 70%">
+                              <input
+                                matInput
+                                placeholder="Left Arc"
+                                id="opLtArc"
+                                [(ngModel)]="opLtArc"
+                                name="opLtArc"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field style="width: 70%">
+                              <input
+                                matInput
+                                placeholder="Right Arc"
+                                id="opRtArc"
+                                [(ngModel)]="opRtArc"
+                                name="opRtArc"
+                              />
+                            </mat-form-field>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="row mt-1">
+                      <input
+                        type="hidden"
+                        [(ngModel)]="secId"
+                        name="secId"
+                        class="form-control input-sm"
+                      />
+                    </div>
+
+                    <div class="row">
+                      <table width="90%">
+                        <tr>
+                          <td class="text-left">
+                            <div class="outerBS text-center">
+                              <button type="submit" class="btnSubmit">S</button>
+                            </div>
+                            <div class="txt-sm">Submit</div>
+                          </td>
+                          <td class="txt-sm text-center">
+                            {{ backendResp_opDepl }}
+                          </td>
+                          <td class="text-left">
+                            <div class="outerBS text-center">
+                              <button type="button" class="btnSubmit">R</button>
+                            </div>
+                            <div class="txt-sm">Reset</div>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+    </div>
+    <div class="col-sm-8" style="border-left: 5px solid #ccc">
+      <div class="row mymap" id="map"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,280 @@
+<div class="col-sm-12 bgA" style="overflow-x: hidden">
+  <div class="row">
+    <div class="col-sm-4 frameA">
+      <div class="col-sm-12">
+        <app-navbar [NavId]="NavId"></app-navbar>
+      </div>
+      <div class="col-sm-12">
+        <mat-vertical-stepper
+          [linear]="isLinear"
+          #stepper
+          style="background: transparent; color: #ddd"
+        >
+          <mat-step [completed]="false">
+            <ng-template matStepLabel
+              ><label class="txt-header mt-2"
+                >Initiate Attack Profile</label
+              ></ng-template
+            >
+            <div class="row">
+              <div class="col-md-6">
+                <table width="100%">
+                  <tr>
+                    <td>
+                      <mat-radio-button
+                        value="optSelect"
+                        name="optSelect"
+                        (click)="getBaseList(2)"
+                        >WL Base</mat-radio-button
+                      >
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <table width="100%">
+                  <tr>
+                    <td>
+                      <mat-radio-button
+                        value="optSelect"
+                        name="optSelect"
+                        (click)="getBaseList(3)"
+                        >DL Base</mat-radio-button
+                      >
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <form
+              #d="ngForm"
+              (ngSubmit)="initiateSortie(d.value)"
+              autocomplete="off"
+            >
+              <div class="col-sm-12">
+                <div class="row">
+                  <table width="100%">
+                    <tr>
+                      <td>
+                        <mat-form-field style="width: 90%">
+                          <mat-label>Select Airbase</mat-label>
+                          <mat-select [(ngModel)]="baseName" name="baseName">
+                            <mat-option
+                              *ngFor="let list of baseList"
+                              [value]="list.elementName"
+                            >
+                              {{ list.elementName }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </td>
+                      <td>
+                        <mat-form-field style="width: 85%">
+                          <mat-label>Select Target</mat-label>
+                          <mat-select [(ngModel)]="tgtName" name="tgtName">
+                            <mat-option
+                              *ngFor="let list of kpiList"
+                              [value]="list.elementName"
+                            >
+                              {{ list.elementName }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="row">
+                  <table width="100%">
+                    <tr>
+                      <td class="text-left">
+                        <div class="outerBS text-center">
+                          <button type="submit" class="btnSubmit">S</button>
+                        </div>
+                        <div class="txt9 text-center">Submit</div>
+                      </td>
+                      <td class="txt10 text-center">
+                        {{ backend_resp_initiate_sortie }}
+                      </td>
+                      <td class="text-right">
+                        <div class="outerBS text-center">
+                          <button type="button" class="btnSubmit">R</button>
+                        </div>
+                        <div class="txt9 text-center">Reset</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [completed]="false">
+            <ng-template matStepLabel
+              ><label class="txt-header mt-2"
+                >Set Path Profile</label
+              ></ng-template
+            >
+            <div>
+              <form
+                #s="ngForm"
+                (ngSubmit)="submitSortieDetails(s.value)"
+                autocomplete="off"
+              >
+                <div class="col-sm-12">
+                  <div class="row">
+                    <table width="100%">
+                      <tr>
+                        <td>
+                          <mat-form-field style="width: 90%">
+                            <mat-label>Select Speed</mat-label>
+                            <mat-select [(ngModel)]="speed" name="speed">
+                              <mat-option
+                                *ngFor="let data of arrSpeed"
+                                [value]="data.value"
+                              >
+                                {{ data.viewValue }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field style="width: 100%">
+                            <mat-label>Select Height</mat-label>
+                            <mat-select [(ngModel)]="height" name="height">
+                              <mat-option
+                                *ngFor="let data of arrHeight"
+                                [value]="data.value"
+                              >
+                                {{ data.viewValue }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <mat-form-field style="width: 90%">
+                            <input
+                              matInput
+                              placeholder="Lattitude"
+                              [(ngModel)]="pLat"
+                              name="pLat"
+                            />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field style="width: 90%">
+                            <input
+                              matInput
+                              placeholder="Longitude"
+                              [(ngModel)]="pLng"
+                              name="pLng"
+                            />
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+
+                <div>
+                  <table width="100%">
+                    <tr>
+                      <td class="text-left">
+                        <div class="outerBS text-center">
+                          <button type="submit" class="btnSubmit">S</button>
+                        </div>
+                        <div class="txt-sm">Submit</div>
+                      </td>
+                      <td class="txt-sm text-center">
+                        {{ backend_resp_sortie_details }}
+                      </td>
+                      <td class="text-left">
+                        <div class="outerBS text-center">
+                          <button
+                            type="button"
+                            class="btnSubmit"
+                            (click)="reset(2)"
+                          >
+                            R
+                          </button>
+                        </div>
+                        <div class="txt-sm">Reset</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+    </div>
+    <div class="col-sm-8 frameB" style="border: 2px solid #ccc">
+      <agm-map
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="zoom"
+        [styles]="mapThemeDayMode"
+      >
+        <agm-circle
+          [latitude]="lat"
+          [longitude]="lng"
+          [circleDraggable]="false"
+          [editable]="false"
+          [fillOpacity]="0"
+          [radius]="900000"
+          [strokeOpacity]="0.1"
+          [strokeWeight]="2"
+          [strokeColor]="'#fff'"
+          [clickable]="true"
+          (circleClick)="getLocation($event)"
+        ></agm-circle>
+        <agm-circle
+          *ngFor="let data of arrElementData"
+          [latitude]="data.lat"
+          [longitude]="data.lng"
+          [circleDraggable]="false"
+          [editable]="false"
+          [fillColor]="
+            data.origin == 1 ? 'blue' : data.origin == 2 ? '#f00' : '#ff0'
+          "
+          [radius]="data.radius"
+          [clickable]="true"
+          [strokeOpacity]="0.3"
+          [strokeWeight]="1"
+          [strokeColor]="data.radius == 2000 ? '#fff' : '#0c6'"
+          [clickable]="true"
+          (circleClick)="getLocation($event)"
+        >
+        </agm-circle>
+        <agm-marker
+          *ngFor="let data of arrLabel"
+          [latitude]="data.latLabel"
+          [longitude]="data.lng"
+          [label]="{
+            color: '#999',
+            fontFamily: 'arial',
+            fontSize: '9px',
+            fontWeight: 'lighter',
+            text: data.elementName
+          }"
+          [iconUrl]="'/'"
+        >
+        </agm-marker>
+        <agm-polyline [strokeColor]="'#f00'" [strokeWeight]="1">
+          <agm-polyline-point
+            *ngFor="let line of pathCoords"
+            [latitude]="line.lineCoordLat"
+            [longitude]="line.lineCoordLng"
+          >
+          </agm-polyline-point>
+        </agm-polyline>
+      </agm-map>
+      <!--  -->
+    </div>
+  </div>
+</div>
